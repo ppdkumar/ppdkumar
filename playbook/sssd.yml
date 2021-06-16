@@ -1,0 +1,10 @@
+---
+  - name: Check the SSD file output of all the remote servers
+    hosts: test
+    tasks:
+      - name: Collect the SSSD file output
+        register: sssdout
+        command: "cat /etc/sssd/sssd.conf"
+
+      - debug:
+          var: sssdout.stdout_lines

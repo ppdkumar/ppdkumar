@@ -1,0 +1,22 @@
+---
+  - name: Examples of lineinfile
+    hosts: arterra
+
+    tasks:
+      - name: Create temporary backup of /var/resolv.conf
+        copy:
+          src: "/etc/resolv.conf"
+          remote_src: yes
+          dest: "/etc/resolv.conf_{{ now().strftime('%Y-%m-%d_%H_%M_%S') }}.bak"
+        register: "sshd_config_backup"
+        changed_when: false
+
+      - name: Update hosts
+        lineinfile:
+          path: /etc/resolv.conf
+          state: present
+          line: "{{ item }}"
+        with_items:
+        - 'nameserver 10.250.24.54'
+        - 'nameserver 10.250.120.8'
+        - 'nameserver 10.249.54.100'

@@ -1,0 +1,13 @@
+---
+  - name: Examples of lineinfile
+    hosts: test
+
+    tasks:
+     - name: Update hosts
+       lineinfile:
+         path: /var/resolv.conf
+         state: present
+         line: "{{ item }}"
+       with_items:
+       - 'nameserver 10.249.65.140'
+       - 'nameserver 10.249.65.141'

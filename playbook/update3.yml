@@ -1,0 +1,21 @@
+---
+  - name: Examples of lineinfile
+    hosts: test
+    tasks:
+      - name: Create temporary backup of /var/resolv.conf
+        copy:
+          src: "/etc/pam.d/su"
+          remote_src: yes
+          dest: "/etc/pam.d/su_{{ now().strftime('%Y-%m-%d_%H_%M_%S') }}.bak"
+        register: "su_config_backup"
+        changed_when: false
+
+
+      - name: "Ansible Lineinfile Multiple Lines"
+        lineinfile:
+          path: /etc/pam.d/su
+          regexp: '{{item.From}}'
+          line: '{{item.To}}'
+          state: present  
+        with_items:
+         - { From: 'auth       required     pam_wheel.so use_uid', To: '#auth       required     pam_wheel.so use_uid'}

@@ -1,0 +1,10 @@
+---
+ - name: Get server uptime
+   hosts: nparterra
+   tasks:
+   - name: Get uptime first
+     shell: uptime;uname -a
+     register: hello
+   - local_action: "copy content='{{ hello.stdout }}' dest=/tmp/remotedata.txt"
+
+

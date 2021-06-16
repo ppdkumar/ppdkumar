@@ -1,0 +1,7 @@
+[user]
+	name = krishnakumar k
+	email = ppdkumar@gmail.com
+[color]
+	ui = auto
+[core]
+	autocrlf = input

@@ -1,0 +1,7 @@
+- hosts: arterra 
+  tasks:
+  - name: Disable the pam_wheel entries.
+    replace:
+      path: /etc/pam.d/su
+      regexp: '(.*pam_wheel.so.*)'
+      replace: '#\1'

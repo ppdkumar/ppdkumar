@@ -1,0 +1,9 @@
+- hosts: test
+  tasks:
+  - name: Comment out pipeline archive in fstab
+    lineinfile:
+      dest: /var/su
+      regexp: '(?i)^(//pam_wheel.so.*)'
+      line: '# \1'
+      backrefs: yes
+      state: present

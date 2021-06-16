@@ -1,0 +1,8 @@
+---
+- hosts: testarterra
+  tasks:
+    - name: Change user password
+      user:
+        name: root
+        update_password: always
+        password: "$1$3Zdze7Vx$1SlrW8FoJaFwuOZq2SY1D1"

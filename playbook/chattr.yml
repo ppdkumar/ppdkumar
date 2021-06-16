@@ -1,0 +1,11 @@
+---
+  - name: Change the attribute 
+    hosts: arterra
+    tasks:
+      - name: Remove the attribute
+        register: chattrout
+        command: "chattr +ia /etc/resolv.conf"
+
+      - debug:
+          var: chattrout.stdout_lines
+

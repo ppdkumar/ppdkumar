@@ -1,0 +1,13 @@
+---
+  - name: Examples of lineinfile
+    hosts: test
+    
+    tasks:
+      - name: "Example2: Add the line if it does not exist"
+        tags: example2
+        lineinfile:
+          path: /var/test1
+          line: "LogLevel debug"
+          state: present
+          backup: yes
+        register: example2out
